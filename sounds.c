@@ -251,11 +251,11 @@ void intomenusounds(void)
         RPG_SHOOT,
         SELECT_WEAPON
     };
-    sound(menusnds[menunum++]);
+    Xsound(menusnds[menunum++]);
     menunum %= 17;
 }
 
-void playmusic(char *fn)
+void PlayMusic(char *fn)
 {
     short      fp;
     long        l;
@@ -325,7 +325,7 @@ int xyzsound(short num,short i,long x,long y,long z)
 
     if( soundm[num]&128 )
     {
-        sound(num);
+        Xsound(num);
         return 0;
     }
 
@@ -449,7 +449,7 @@ int xyzsound(short num,short i,long x,long y,long z)
     return (voice);
 }
 
-void sound(short num)
+void Xsound(short num)
 {
     short pitch,pitche,pitchs,cx;
     int voice;
@@ -519,7 +519,7 @@ void stopsound(short num)
     if(Sound[num].num > 0)
     {
         FX_StopSound(SoundOwner[num][Sound[num].num-1].voice);
-        testcallback(num);
+        TestCallBack(num);
     }
 }
 

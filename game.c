@@ -489,7 +489,7 @@ void getpackets(void)
                 recbuf[packbufleng-1] = 0;
 
                 adduserquote(recbuf);
-                sound(EXITMENUSOUND);
+                Xsound(EXITMENUSOUND);
 
                 pus = NUMPAGES;
                 pub = NUMPAGES;
@@ -1025,23 +1025,23 @@ void check_fta_sounds(short i)
             spritesound(OCTA_RECOG,i);
             break;
         case BOSS1:
-            sound(BOS1_RECOG);
+            Xsound(BOS1_RECOG);
             break;
         case BOSS2:
             if(sprite[i].pal == 1)
-                sound(BOS2_RECOG);
-            else sound(WHIPYOURASS);
+                Xsound(BOS2_RECOG);
+            else Xsound(WHIPYOURASS);
             break;
         case BOSS3:
             if(sprite[i].pal == 1)
-                sound(BOS3_RECOG);
-            else sound(RIPHEADNECK);
+                Xsound(BOS3_RECOG);
+            else Xsound(RIPHEADNECK);
             break;
         case BOSS4:
         case BOSS4STAYPUT:
             if(sprite[i].pal == 1)
-                sound(BOS4_RECOG);
-            sound(BOSS4_FIRSTSEE);
+                Xsound(BOS4_RECOG);
+            Xsound(BOSS4_FIRSTSEE);
             break;
         case GREENSLIME:
             spritesound(SLIM_RECOG,i);
@@ -1990,7 +1990,7 @@ void gameexit(char *t)
 
     GOTOHERE:
 
-    Shutdown();
+    ShutDown();
 
     if(*t != 0)
     {
@@ -2160,7 +2160,7 @@ void typemode(void)
 
                 if( KB_KeyWaiting() )
                 {
-                     i = KB_GetCh();
+                     i = KB_Getch();
 
                      if(i == 'A' || i == 'a' || i == 13)
                           sendmessagecommand = ud.multimode;
@@ -5738,12 +5738,12 @@ void cheats(void)
                             ps[myconnectindex].gotweapon[weapon]  = 1;
                         }
 
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         ps[myconnectindex].cheat_phase = 0;
                         FTA(119,&ps[myconnectindex]);
                         return;
                     case 22:
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         ps[myconnectindex].cheat_phase = 0;
                         ps[myconnectindex].steroids_amount =         400;
                         ps[myconnectindex].heat_amount     =        1200;
@@ -5758,18 +5758,18 @@ void cheats(void)
                         return;
                     case 23:
                         ps[myconnectindex].got_access =              7;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         ps[myconnectindex].cheat_phase = 0;
                         FTA(121,&ps[myconnectindex]);
                         return;
                     case 24:
                         debug_on = 1-debug_on;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         ps[myconnectindex].cheat_phase = 0;
                         break;
                     case 20:
                         ud.clipping = 1-ud.clipping;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         ps[myconnectindex].cheat_phase = 0;
                         FTA(112+ud.clipping,&ps[myconnectindex]);
                         return;
@@ -5777,7 +5777,7 @@ void cheats(void)
                     case 15:
                         ps[myconnectindex].gm = MODE_EOL;
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
 
                     case 19:
@@ -5822,7 +5822,7 @@ void cheats(void)
                         sprite[ps[myconnectindex].i].extra = max_player_health;
                         hittype[ps[myconnectindex].i].extra = 0;
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
 
                         return;
 
@@ -5859,7 +5859,7 @@ void cheats(void)
 
 //                        FTA(21,&ps[myconnectindex]);
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         ps[myconnectindex].inven_icon = 1;
                         return;
 
@@ -5887,7 +5887,7 @@ void cheats(void)
                             if( volnume > 0 )
                             {
                                 ps[myconnectindex].cheat_phase = 0;
-                                KB_FlushKeyBoardQueue();
+                                KB_FlushKeyboardQueue();
                                 return;
                             }
 #endif
@@ -5895,7 +5895,7 @@ void cheats(void)
                             if(volnume > 4)
                             {
                                 ps[myconnectindex].cheat_phase = 0;
-                                KB_FlushKeyBoardQueue();
+                                KB_FlushKeyboardQueue();
                                 return;
                             }
                             else
@@ -5903,7 +5903,7 @@ void cheats(void)
                             if(volnume > 3)
                             {
                                 ps[myconnectindex].cheat_phase = 0;
-                                KB_FlushKeyBoardQueue();
+                                KB_FlushKeyboardQueue();
                                 return;
                             }
                             else
@@ -5914,7 +5914,7 @@ void cheats(void)
                                 if(levnume > 5)
                                 {
                                     ps[myconnectindex].cheat_phase = 0;
-                                    KB_FlushKeyBoardQueue();
+                                    KB_FlushKeyboardQueue();
                                     return;
                                 }
                             }
@@ -5923,7 +5923,7 @@ void cheats(void)
                                 if(levnume >= 11)
                                 {
                                     ps[myconnectindex].cheat_phase = 0;
-                                    KB_FlushKeyBoardQueue();
+                                    KB_FlushKeyboardQueue();
                                     return;
                                 }
                             }
@@ -5955,13 +5955,13 @@ void cheats(void)
                         else ps[myconnectindex].gm |= MODE_RESTART;
 
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
 
                     case 3:
                         ps[myconnectindex].cheat_phase = 0;
                         ud.coords = 1-ud.coords;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
 
                     case 4:
@@ -5975,13 +5975,13 @@ void cheats(void)
                         }
                         FTA(22,&ps[myconnectindex]);
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                     case 5:
 
                         FTA(21,&ps[myconnectindex]);
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
 #ifndef VOLUMEONE
                     case 6:
@@ -6000,7 +6000,7 @@ void cheats(void)
 
                         FTA(100,&ps[myconnectindex]);
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
 #endif
 
@@ -6023,7 +6023,7 @@ void cheats(void)
                         ps[myconnectindex].got_access =              7;
                         FTA(5,&ps[myconnectindex]);
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                     case 17: // SHOW ALL OF THE MAP TOGGLE;
                         ud.showallmap = 1-ud.showallmap;
@@ -6044,43 +6044,43 @@ void cheats(void)
                             FTA(1,&ps[myconnectindex]);
                         }
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
 
                     case 16:
                         FTA(99,&ps[myconnectindex]);
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                     case 9:
                         ud.tickrate = !ud.tickrate;
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                     case 11:
                         FTA(105,&ps[myconnectindex]);
                         KB_ClearKeyDown(sc_H);
                         ps[myconnectindex].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                     case 12:
                         ps[myconnectindex].steroids_amount = 399;
                         ps[myconnectindex].heat_amount = 1200;
                         ps[myconnectindex].cheat_phase = 0;
                         FTA(37,&ps[myconnectindex]);
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                     case 13:
                         if(actor_tog == 3) actor_tog = 0;
                         actor_tog++;
                         ps[screenpeek].cheat_phase = 0;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                     case 14:
                     case 25:
                         ud.eog = 1;
                         ps[myconnectindex].gm |= MODE_EOL;
-                        KB_FlushKeyBoardQueue();
+                        KB_FlushKeyboardQueue();
                         return;
                 }
              }
@@ -6148,14 +6148,14 @@ void nonsharedkeys(void)
             {
                 CONTROL_ClearButton( gamefunc_Enlarge_Screen );
                 if(ud.screen_size > 0)
-                    sound(THUD);
+                    Xsound(THUD);
                 ud.screen_size -= 4;
                 vscrn();
             }
             if( BUTTON( gamefunc_Shrink_Screen ) )
             {
                 CONTROL_ClearButton( gamefunc_Shrink_Screen );
-                if(ud.screen_size < 64) sound(THUD);
+                if(ud.screen_size < 64) Xsound(THUD);
                 ud.screen_size += 4;
                 vscrn();
             }
@@ -6226,7 +6226,7 @@ void nonsharedkeys(void)
 #endif
                     strcpy(&tempbuf[0],"PLAYING ");
                     strcat(&tempbuf[0],&music_fn[0][music_select][0]);
-                    playmusic(&music_fn[0][music_select][0]);
+                    PlayMusic(&music_fn[0][music_select][0]);
                     strcpy(&fta_quotes[26][0],&tempbuf[0]);
                     FTA(26,&ps[myconnectindex]);
                     return;
@@ -6989,7 +6989,7 @@ void Logo(void)
             if(soundanm == 0)
             {
                 soundanm = 1;
-                sound(PIPEBOMB_EXPLODE);
+                Xsound(PIPEBOMB_EXPLODE);
             }
             rotatesprite(160<<16,104<<16,(totalclock-120)<<10,0,DUKENUKEM,0,0,2+8,0,0,xdim-1,ydim-1);
         }
@@ -7001,7 +7001,7 @@ void Logo(void)
             if( soundanm == 1)
             {
                 soundanm = 2;
-                sound(PIPEBOMB_EXPLODE);
+                Xsound(PIPEBOMB_EXPLODE);
             }
 
             rotatesprite(160<<16,(104)<<16,60<<10,0,DUKENUKEM,0,0,2+8,0,0,xdim-1,ydim-1);
@@ -7016,7 +7016,7 @@ void Logo(void)
             if(soundanm == 2)
             {
                 soundanm = 3;
-                sound(FLY_BY);
+                Xsound(FLY_BY);
             }
         }
         else if( totalclock >= 395 )
@@ -7024,7 +7024,7 @@ void Logo(void)
             if(soundanm == 3)
             {
                 soundanm = 4;
-                sound(PIPEBOMB_EXPLODE);
+                Xsound(PIPEBOMB_EXPLODE);
             }
             rotatesprite(160<<16,(151)<<16,30<<11,0,PLUTOPAKSPRITE+1,0,0,2+8,0,0,xdim-1,ydim-1);
         }
@@ -7052,7 +7052,7 @@ void Logo(void)
     nextpage();
 
     ps[myconnectindex].palette = palette;
-    sound(NITEVISION_ONOFF);
+    Xsound(NITEVISION_ONOFF);
 
     palto(0,0,0,0);
     clearview(0L);
@@ -8564,7 +8564,7 @@ char domovethings(void)
           ud.multimode--;
 
           if (numplayers < 2)
-              sound(GENERIC_AMBIENCE17);
+              Xsound(GENERIC_AMBIENCE17);
 
           pub = NUMPAGES;
           pus = NUMPAGES;
@@ -8738,7 +8738,7 @@ void dobonus(char bonusonly)
                     if( totalclock > 390 && totalclock < 780 )
                         for(t=0;t<35;t+=5) if( bossmove[t+2] && (totalclock%390) > bossmove[t] && (totalclock%390) <= bossmove[t+1] )
                     {
-                        if(t==10 && bonuscnt == 1) { sound(SHOTGUN_FIRE);sound(SQUISHED); bonuscnt++; }
+                        if(t==10 && bonuscnt == 1) { Xsound(SHOTGUN_FIRE);Xsound(SQUISHED); bonuscnt++; }
                         rotatesprite(bossmove[t+3]<<16,bossmove[t+4]<<16,65536L,0,bossmove[t+2],0,0,2+8+16+64+128,0,0,xdim-1,ydim-1);
                     }
 
@@ -8748,14 +8748,14 @@ void dobonus(char bonusonly)
                         if(totalclock >= 750)
                         {
                             rotatesprite(86<<16,59<<16,65536L,0,VICTORY1+8,0,0,2+8+16+64+128,0,0,xdim-1,ydim-1);
-                            if(totalclock >= 750 && bonuscnt == 2) { sound(DUKETALKTOBOSS); bonuscnt++; }
+                            if(totalclock >= 750 && bonuscnt == 2) { Xsound(DUKETALKTOBOSS); bonuscnt++; }
                         }
                         for(t=0;t<20;t+=5)
                             if( breathe[t+2] && (totalclock%120) > breathe[t] && (totalclock%120) <= breathe[t+1] )
                         {
                                 if(t==5 && bonuscnt == 0)
                                 {
-                                    sound(BOSSTALKTODUKE);
+                                    Xsound(BOSSTALKTODUKE);
                                     bonuscnt++;
                                 }
                                 rotatesprite(breathe[t+3]<<16,breathe[t+4]<<16,65536L,0,breathe[t+2],0,0,2+8+16+64+128,0,0,xdim-1,ydim-1);
@@ -8789,12 +8789,12 @@ void dobonus(char bonusonly)
             if(ud.lockout == 0)
             {
                 playanm("cineov2.anm",1);
-                KB_FlushKeyBoardQueue();
+                KB_FlushKeyboardQueue();
                 clearview(0L);
                 nextpage();
             }
 
-            sound(PIPEBOMB_EXPLODE);
+            Xsound(PIPEBOMB_EXPLODE);
 
             for(t=0;t<64;t++) palto(0,0,0,t);
             setview(0,0,xdim-1,ydim-1);
@@ -8831,8 +8831,8 @@ void dobonus(char bonusonly)
 
             FX_StopAllSounds();
             clearsoundlocks();
-            sound(ENDSEQVOL3SND4);
-            KB_FlushKeyBoardQueue();
+            Xsound(ENDSEQVOL3SND4);
+            KB_FlushKeyboardQueue();
 
             ps[myconnectindex].palette = palette;
             palto(0,0,0,63);
@@ -8854,7 +8854,7 @@ void dobonus(char bonusonly)
 
             playanm("DUKETEAM.ANM",4);
 
-            KB_FlushKeyBoardQueue();
+            KB_FlushKeyboardQueue();
             while(!KB_KeyWaiting()) getpackets();
 
             clearview(0L);
@@ -8863,7 +8863,7 @@ void dobonus(char bonusonly)
 
             FX_StopAllSounds();
             clearsoundlocks();
-            KB_FlushKeyBoardQueue();
+            KB_FlushKeyboardQueue();
 
             break;
 
@@ -8876,7 +8876,7 @@ void dobonus(char bonusonly)
             {
                 for(t=63;t>=0;t--) palto(0,0,0,t);
                 playanm("cineov3.anm",2);
-                KB_FlushKeyBoardQueue();
+                KB_FlushKeyboardQueue();
                 ototalclock = totalclock+200;
                 while(totalclock < ototalclock) getpackets();
                 clearview(0L);
@@ -8890,23 +8890,23 @@ void dobonus(char bonusonly)
 
             if( ud.lockout == 0 && !KB_KeyWaiting() )
             {
-                sound(ENDSEQVOL3SND5);
+                Xsound(ENDSEQVOL3SND5);
                 while(Sound[ENDSEQVOL3SND5].lock>=200) getpackets();
                 if(KB_KeyWaiting()) goto ENDANM;
-                sound(ENDSEQVOL3SND6);
+                Xsound(ENDSEQVOL3SND6);
                 while(Sound[ENDSEQVOL3SND6].lock>=200) getpackets();
                 if(KB_KeyWaiting()) goto ENDANM;
-                sound(ENDSEQVOL3SND7);
+                Xsound(ENDSEQVOL3SND7);
                 while(Sound[ENDSEQVOL3SND7].lock>=200) getpackets();
                 if(KB_KeyWaiting()) goto ENDANM;
-                sound(ENDSEQVOL3SND8);
+                Xsound(ENDSEQVOL3SND8);
                 while(Sound[ENDSEQVOL3SND8].lock>=200) getpackets();
                 if(KB_KeyWaiting()) goto ENDANM;
-                sound(ENDSEQVOL3SND9);
+                Xsound(ENDSEQVOL3SND9);
                 while(Sound[ENDSEQVOL3SND9].lock>=200) getpackets();
             }
 
-            KB_FlushKeyBoardQueue();
+            KB_FlushKeyboardQueue();
             totalclock = 0;
             while(!KB_KeyWaiting() && totalclock < 120) getpackets();
 
@@ -8915,7 +8915,7 @@ void dobonus(char bonusonly)
             FX_StopAllSounds();
             clearsoundlocks();
 
-            KB_FlushKeyBoardQueue();
+            KB_FlushKeyboardQueue();
 
             clearview(0L);
 
@@ -8936,7 +8936,7 @@ void dobonus(char bonusonly)
     if(playerswhenstarted > 1 && ud.coop != 1 )
     {
         if(!(MusicToggle == 0 || MusicDevice == NumSoundCards))
-            sound(BONUSMUSIC);
+            Xsound(BONUSMUSIC);
 
         rotatesprite(0,0,65536L,0,MENUSCREEN,16,0,2+8+16+64,0,0,xdim-1,ydim-1);
         rotatesprite(160<<16,34<<16,65536L,0,INGAMEDUKETHREEDEE,0,0,10,0,0,xdim-1,ydim-1);
@@ -9044,7 +9044,7 @@ void dobonus(char bonusonly)
     gametext(160,192,"PRESS ANY KEY TO CONTINUE",16,2+8+16);
 
     if(!(MusicToggle == 0 || MusicDevice == NumSoundCards))
-        sound(BONUSMUSIC);
+        Xsound(BONUSMUSIC);
 
     nextpage();
     KB_FlushKeyboardQueue();
@@ -9066,20 +9066,20 @@ void dobonus(char bonusonly)
                         if(bonuscnt == 6)
                         {
                             bonuscnt++;
-                            sound(SHOTGUN_COCK);
+                            Xsound(SHOTGUN_COCK);
                             switch(rand()&3)
                             {
                                 case 0:
-                                    sound(BONUS_SPEECH1);
+                                    Xsound(BONUS_SPEECH1);
                                     break;
                                 case 1:
-                                    sound(BONUS_SPEECH2);
+                                    Xsound(BONUS_SPEECH2);
                                     break;
                                 case 2:
-                                    sound(BONUS_SPEECH3);
+                                    Xsound(BONUS_SPEECH3);
                                     break;
                                 case 3:
-                                    sound(BONUS_SPEECH4);
+                                    Xsound(BONUS_SPEECH4);
                                     break;
                             }
                         }
@@ -9127,7 +9127,7 @@ void dobonus(char bonusonly)
                     if(bonuscnt == 1)
                     {
                         bonuscnt++;
-                        sound(PIPEBOMB_EXPLODE);
+                        Xsound(PIPEBOMB_EXPLODE);
                     }
                     sprintf(tempbuf,"%02ld:%02ld",
                         (ps[myconnectindex].player_par/(26*60))%60,
@@ -9154,7 +9154,7 @@ void dobonus(char bonusonly)
                 if(bonuscnt == 2)
                 {
                     bonuscnt++;
-                    sound(FLY_BY);
+                    Xsound(FLY_BY);
                 }
 
                 if( totalclock > (60*7) )
@@ -9162,7 +9162,7 @@ void dobonus(char bonusonly)
                     if(bonuscnt == 3)
                     {
                         bonuscnt++;
-                        sound(PIPEBOMB_EXPLODE);
+                        Xsound(PIPEBOMB_EXPLODE);
                     }
                     sprintf(tempbuf,"%-3ld",ps[myconnectindex].actors_killed);
                     gametext((320>>2)+70,93+9,tempbuf,0,2+8+16);
@@ -9191,7 +9191,7 @@ void dobonus(char bonusonly)
                     if(bonuscnt == 5)
                     {
                         bonuscnt++;
-                        sound(PIPEBOMB_EXPLODE);
+                        Xsound(PIPEBOMB_EXPLODE);
                     }
                     sprintf(tempbuf,"%-3ld",ps[myconnectindex].secret_rooms);
                     gametext((320>>2)+70,120+9,tempbuf,0,2+8+16);

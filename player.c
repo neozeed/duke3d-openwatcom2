@@ -2345,7 +2345,7 @@ void processinput(short snum)
         if(p->fist_incs == 28)
         {
             if(ud.recstat == 1) closedemowrite();
-            sound(PIPEBOMB_EXPLODE);
+            Xsound(PIPEBOMB_EXPLODE);
             p->pals[0] = 64;
             p->pals[1] = 64;
             p->pals[2] = 64;
@@ -2395,7 +2395,7 @@ void processinput(short snum)
             clearsoundlocks();
             if(p->customexitsound >= 0)
             {
-                sound(p->customexitsound);
+                Xsound(p->customexitsound);
                 FTA(102,p);
             }
         }
@@ -2479,7 +2479,7 @@ void processinput(short snum)
             if(p->scream_voice > FX_Ok)
             {
                 FX_StopSound(p->scream_voice);
-                testcallback(DUKE_SCREAM);
+                TestCallBack(DUKE_SCREAM);
                 p->scream_voice = FX_Ok;
             }
 

@@ -986,7 +986,7 @@ void newgame(char vn,char ln,char sk)
 
     if( ln == 0 && vn == 3 && ud.multimode < 2 && ud.lockout == 0)
     {
-        playmusic(&env_music_fn[1][0]);
+        PlayMusic(&env_music_fn[1][0]);
 
         flushperms();
         setview(0,0,xdim-1,ydim-1);
@@ -1421,7 +1421,7 @@ void enterlevel(char g)
     if(ud.recstat != 2)
     {
         music_select = (ud.volume_number*11) + ud.level_number;
-        playmusic(&music_fn[0][music_select][0]);
+        PlayMusic(&music_fn[0][music_select][0]);
     }
 
     if( (g&MODE_GAME) || (g&MODE_EOL) )

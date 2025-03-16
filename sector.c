@@ -2248,7 +2248,7 @@ void checkhitsprite(short i,short sn)
             guts(&sprite[i],JIBS4,4,myconnectindex);
             guts(&sprite[i],JIBS5,1,myconnectindex);
             guts(&sprite[i],JIBS3,6,myconnectindex);
-            sound(SQUISHED);
+            Xsound(SQUISHED);
             deletesprite(i);
             break;
         case CHAIR1:
@@ -2855,7 +2855,7 @@ void cheatkeys(short snum)
                     if(p->scream_voice > FX_Ok)
                     {
                         FX_StopSound(p->scream_voice);
-                        testcallback(DUKE_SCREAM);
+                        TestCallBack(DUKE_SCREAM);
                         p->scream_voice = FX_Ok;
                     }
 

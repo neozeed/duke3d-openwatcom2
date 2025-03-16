@@ -1382,7 +1382,7 @@ void movefx(void)
                             if( p == myconnectindex && ps[p].cursectnum == s->sectnum )
                         {
                             j = s->lotag+((unsigned)global_random%(s->hitag+1));
-                            sound(j);
+                            Xsound(j);
                             T5 =  26*40 + (global_random%(26*40));
                         }
                     }
@@ -3218,7 +3218,7 @@ void moveactors(void)
 
                 if( t[0] > (26*8) )
                 {
-                    sound(RPG_EXPLODE);
+                    Xsound(RPG_EXPLODE);
                     for(j=0;j<32;j++) RANDOMSCRAP;
                     earthquaketime = 16;
                     KILLIT(i);

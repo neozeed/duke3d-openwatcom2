@@ -2188,12 +2188,13 @@ slowhline (long xr, long yp)
 	transarea += (xr-xl);
 }
 
-long dommxoverlay = 1;
+//long dommxoverlay = 1;
+long dommxoverlay = 0;
 initengine()
 {
 	long i, j;
 
-	if (dommxoverlay) mmxoverlay();
+//	if (dommxoverlay) mmxoverlay();
 
 	loadtables();
 

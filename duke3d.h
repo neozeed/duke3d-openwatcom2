@@ -457,7 +457,7 @@ extern long movefifoplc, vel,svel,angvel,horiz;
 
 extern short mirrorwall[64], mirrorsector[64], mirrorcnt;
 
-extern void TestCallBack(unsigned long);
+extern void TestCallBack(long num);
 
 #define NUMKEYS 19
 

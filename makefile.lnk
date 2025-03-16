@@ -2,7 +2,8 @@ system dos4g
 option map
 option stack=90k
 option u
+OPTION NOCASEEXACT
 name duke3d
-file game,actors,gamedef,global,menues,player,premap,sector,sounds,rts,config
-file build\engine,build\cache1d,build\mmulti,build\a,animlib
-library audio_wf.lib,mact\mact386.lib,butwcd4.lib
+file game,actors,gamedef,global,menues,player,premap,sector,sounds,rts,config,animlib
+file build\src\engine,build\src\cache1d,build\src\mmulti,build\src\a
+library libs\audio_wf.lib,mact\mact386.lib

@@ -405,7 +405,7 @@ loadplayer(signed char spot)
 
      if(music_changed == 0)
         music_select = (ud.volume_number*11) + ud.level_number;
-     playmusic(&music_fn[0][music_select][0]);
+     PlayMusic(&music_fn[0][music_select][0]);
 
      ps[myconnectindex].gm = MODE_GAME;
          ud.recstat = 0;
@@ -747,7 +747,7 @@ int probe(int x,int y,int i,int n)
             KB_ClearKeyDown( sc_UpArrow );
             KB_ClearKeyDown( sc_kpad_8 );
             KB_ClearKeyDown( sc_PgUp );
-            sound(KICK_HIT);
+            Xsound(KICK_HIT);
 
             probey--;
             if(probey < 0) probey = n-1;
@@ -760,7 +760,7 @@ int probe(int x,int y,int i,int n)
             KB_ClearKeyDown( sc_DownArrow );
             KB_ClearKeyDown( sc_kpad_2 );
             KB_ClearKeyDown( sc_PgDn );
-            sound(KICK_HIT);
+            Xsound(KICK_HIT);
             probey++;
             minfo.dz = 0;
         }
@@ -783,7 +783,7 @@ int probe(int x,int y,int i,int n)
     if( KB_KeyPressed(sc_Space) || KB_KeyPressed( sc_kpad_Enter ) || KB_KeyPressed( sc_Enter ) || (LMB && !onbar) )
     {
         if(current_menu != 110)
-            sound(PISTOL_BODYHIT);
+            Xsound(PISTOL_BODYHIT);
         KB_ClearKeyDown( sc_Enter );
         KB_ClearKeyDown( sc_Space );
         KB_ClearKeyDown( sc_kpad_Enter );
@@ -793,7 +793,7 @@ int probe(int x,int y,int i,int n)
     {
         onbar = 0;
         KB_ClearKeyDown( sc_Escape );
-        sound(EXITMENUSOUND);
+        Xsound(EXITMENUSOUND);
         return(-1);
     }
     else
@@ -1046,7 +1046,7 @@ void bar(int x,int y,short *p,short dainc,char damodify,short s, short pa)
                 *p -= dainc;
                 if(*p < 0)
                     *p = 0;
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
             }
             if( KB_KeyPressed( sc_RightArrow ) || KB_KeyPressed( sc_kpad_6 ) || ((buttonstat&1) && minfo.dyaw > 256 ) )//&& onbar) )
             {
@@ -1056,7 +1056,7 @@ void bar(int x,int y,short *p,short dainc,char damodify,short s, short pa)
                 *p += dainc;
                 if(*p > 63)
                     *p = 63;
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
             }
         }
         else
@@ -1069,7 +1069,7 @@ void bar(int x,int y,short *p,short dainc,char damodify,short s, short pa)
                 *p -= dainc;
                 if(*p < 0)
                     *p = 0;
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
             }
             if( KB_KeyPressed( sc_LeftArrow ) || KB_KeyPressed( sc_kpad_4 ) || ((buttonstat&1) && minfo.dyaw < -256 ))// && onbar) )
             {
@@ -1079,7 +1079,7 @@ void bar(int x,int y,short *p,short dainc,char damodify,short s, short pa)
                 *p += dainc;
                 if(*p > 64)
                     *p = 64;
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
             }
         }
     }
@@ -1517,7 +1517,7 @@ void menus(void)
             {
                 KB_ClearKeyDown(sc_N);
                 KB_ClearKeyDown(sc_Escape);
-                sound(EXITMENUSOUND);
+                Xsound(EXITMENUSOUND);
                 if(ps[myconnectindex].gm&MODE_DEMO) cmenu(300);
                 else
                 {
@@ -1551,7 +1551,7 @@ void menus(void)
                     totalclock = ototalclock;
                 }
                 ps[myconnectindex].gm &= ~MODE_MENU;
-                sound(EXITMENUSOUND);
+                Xsound(EXITMENUSOUND);
                 break;
             }
             probe(186,124,0,0);
@@ -1602,7 +1602,7 @@ void menus(void)
                 KB_ClearKeyDown(sc_N);
                 KB_ClearKeyDown(sc_Escape);
                 cmenu(351);
-                sound(EXITMENUSOUND);
+                Xsound(EXITMENUSOUND);
             }
 
             probe(186,124,0,0);
@@ -1636,7 +1636,7 @@ void menus(void)
                 KB_ClearKeyDown(sc_PgUp);
                 KB_ClearKeyDown(sc_kpad_8);
 
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
                 current_menu--;
                 if(current_menu < 990) current_menu = 992;
             }
@@ -1660,7 +1660,7 @@ void menus(void)
                 KB_ClearKeyDown(sc_kpad_2);
                 KB_ClearKeyDown(sc_DownArrow);
                 KB_ClearKeyDown(sc_Space);
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
                 current_menu++;
                 if(current_menu > 992) current_menu = 990;
             }
@@ -1993,7 +1993,7 @@ void menus(void)
                     case 3: globalskillsound = JIBBED_ACTOR5;break;
                 }
 
-                sound(globalskillsound);
+                Xsound(globalskillsound);
 
                 ud.m_player_skill = x+1;
                 if(x == 3) ud.m_respawn_monsters = 1;
@@ -2192,8 +2192,8 @@ void menus(void)
                         else
                         {
                             if(ud.recstat != 2 && ps[myconnectindex].gm&MODE_GAME)
-                                playmusic(&music_fn[0][music_select][0]);
-                            else playmusic(&env_music_fn[0][0]);
+                                PlayMusic(&music_fn[0][music_select][0]);
+                            else PlayMusic(&env_music_fn[0][0]);
 
                             MUSIC_Continue();
                         }
@@ -2251,7 +2251,7 @@ void menus(void)
                     (numplayers > 1 && eightytwofifty)||MusicToggle==0||(MusicDevice==NumSoundCards));
                 MusicVolume <<= 2;
                 if(l != MusicVolume)
-                    Music_SetVolume( (short) MusicVolume );
+                    MUSIC_SetVolume( (short) MusicVolume );
 
             }
             menutext(c,50+16+16+16+16,SHX(-6),(FXDevice==NumSoundCards)||SoundToggle==0,"DUKE TALK");
@@ -2341,7 +2341,7 @@ void menus(void)
                             totalclock = ototalclock;
                         }
                         KB_ClearKeyDown(sc_Escape);
-                        sound(EXITMENUSOUND);
+                        Xsound(EXITMENUSOUND);
                     }
                 }
 
@@ -2466,7 +2466,7 @@ void menus(void)
                 KB_ClearKeyDown(sc_PgUp);
                 KB_ClearKeyDown(sc_kpad_8);
 
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
                 current_menu--;
                 if(current_menu < 400) current_menu = 403;
             }
@@ -2490,7 +2490,7 @@ void menus(void)
                 KB_ClearKeyDown(sc_kpad_2);
                 KB_ClearKeyDown(sc_DownArrow);
                 KB_ClearKeyDown(sc_Space);
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
                 current_menu++;
                 if(current_menu > 403) current_menu = 400;
             }
@@ -2524,7 +2524,7 @@ void menus(void)
                 KB_ClearKeyDown(sc_PgUp);
                 KB_ClearKeyDown(sc_kpad_8);
 
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
                 current_menu--;
                 if(current_menu < 400) current_menu = 401;
             }
@@ -2548,7 +2548,7 @@ void menus(void)
                 KB_ClearKeyDown(sc_kpad_2);
                 KB_ClearKeyDown(sc_DownArrow);
                 KB_ClearKeyDown(sc_Space);
-                sound(KICK_HIT);
+                Xsound(KICK_HIT);
                 current_menu++;
                 if(current_menu > 401) current_menu = 400;
             }
@@ -2665,7 +2665,7 @@ void menus(void)
             if( KB_KeyPressed(sc_Escape) )
             {
                 KB_ClearKeyDown(sc_Escape);
-                sound(EXITMENUSOUND);
+                Xsound(EXITMENUSOUND);
                 cmenu(0);
             }
             break;
@@ -2698,7 +2698,7 @@ void menus(void)
                 KB_ClearKeyDown( sc_kpad_4 );
                 probey -= 15;
                 if(probey < 0) probey += 15;
-                else sound(KICK_HIT);
+                else Xsound(KICK_HIT);
             }
             if( KB_KeyPressed( sc_RightArrow ) || KB_KeyPressed( sc_kpad_6 ) || ((buttonstat&1) && minfo.dyaw > 256 ) )
             {
@@ -2707,7 +2707,7 @@ void menus(void)
                 probey += 15;
                 if(probey >= menunamecnt)
                     probey -= 15;
-                else sound(KICK_HIT);
+                else Xsound(KICK_HIT);
             }
 
             onbar = 0;
@@ -3273,31 +3273,31 @@ void endanimsounds(long fr)
             switch(fr)
             {
                 case 1:
-                    sound(WIND_AMBIENCE);
+                    Xsound(WIND_AMBIENCE);
                     break;
                 case 26:
-                    sound(ENDSEQVOL2SND1);
+                    Xsound(ENDSEQVOL2SND1);
                     break;
                 case 36:
-                    sound(ENDSEQVOL2SND2);
+                    Xsound(ENDSEQVOL2SND2);
                     break;
                 case 54:
-                    sound(THUD);
+                    Xsound(THUD);
                     break;
                 case 62:
-                    sound(ENDSEQVOL2SND3);
+                    Xsound(ENDSEQVOL2SND3);
                     break;
                 case 75:
-                    sound(ENDSEQVOL2SND4);
+                    Xsound(ENDSEQVOL2SND4);
                     break;
                 case 81:
-                    sound(ENDSEQVOL2SND5);
+                    Xsound(ENDSEQVOL2SND5);
                     break;
                 case 115:
-                    sound(ENDSEQVOL2SND6);
+                    Xsound(ENDSEQVOL2SND6);
                     break;
                 case 124:
-                    sound(ENDSEQVOL2SND7);
+                    Xsound(ENDSEQVOL2SND7);
                     break;
             }
             break;
@@ -3305,23 +3305,23 @@ void endanimsounds(long fr)
             switch(fr)
             {
                 case 1:
-                    sound(WIND_REPEAT);
+                    Xsound(WIND_REPEAT);
                     break;
                 case 98:
-                    sound(DUKE_GRUNT);
+                    Xsound(DUKE_GRUNT);
                     break;
                 case 82+20:
-                    sound(THUD);
-                    sound(SQUISHED);
+                    Xsound(THUD);
+                    Xsound(SQUISHED);
                     break;
                 case 104+20:
-                    sound(ENDSEQVOL3SND3);
+                    Xsound(ENDSEQVOL3SND3);
                     break;
                 case 114+20:
-                    sound(ENDSEQVOL3SND2);
+                    Xsound(ENDSEQVOL3SND2);
                     break;
                 case 158:
-                    sound(PIPEBOMB_EXPLODE);
+                    Xsound(PIPEBOMB_EXPLODE);
                     break;
             }
             break;
@@ -3333,10 +3333,10 @@ void logoanimsounds(long fr)
     switch(fr)
     {
         case 1:
-            sound(FLY_BY);
+            Xsound(FLY_BY);
             break;
         case 19:
-            sound(PIPEBOMB_EXPLODE);
+            Xsound(PIPEBOMB_EXPLODE);
             break;
     }
 }
@@ -3346,14 +3346,14 @@ void intro4animsounds(long fr)
     switch(fr)
     {
         case 1:
-            sound(INTRO4_B);
+            Xsound(INTRO4_B);
             break;
         case 12:
         case 34:
-            sound(SHORT_CIRCUIT);
+            Xsound(SHORT_CIRCUIT);
             break;
         case 18:
-            sound(INTRO4_5);
+            Xsound(INTRO4_5);
             break;
     }
 }
@@ -3363,16 +3363,16 @@ void first4animsounds(long fr)
     switch(fr)
     {
         case 1:
-            sound(INTRO4_1);
+            Xsound(INTRO4_1);
             break;
         case 12:
-            sound(INTRO4_2);
+            Xsound(INTRO4_2);
             break;
         case 7:
-            sound(INTRO4_3);
+            Xsound(INTRO4_3);
             break;
         case 26:
-            sound(INTRO4_4);
+            Xsound(INTRO4_4);
             break;
     }
 }
@@ -3382,7 +3382,7 @@ void intro42animsounds(long fr)
     switch(fr)
     {
         case 10:
-            sound(INTRO4_6);
+            Xsound(INTRO4_6);
             break;
     }
 }
@@ -3395,10 +3395,10 @@ void endanimvol41(long fr)
     switch(fr)
     {
         case 3:
-            sound(DUKE_UNDERWATER);
+            Xsound(DUKE_UNDERWATER);
             break;
         case 35:
-            sound(VOL4ENDSND1);
+            Xsound(VOL4ENDSND1);
             break;
     }
 }
@@ -3408,13 +3408,13 @@ void endanimvol42(long fr)
     switch(fr)
     {
         case 11:
-            sound(DUKE_UNDERWATER);
+            Xsound(DUKE_UNDERWATER);
             break;
         case 20:
-            sound(VOL4ENDSND1);
+            Xsound(VOL4ENDSND1);
             break;
         case 39:
-            sound(VOL4ENDSND2);
+            Xsound(VOL4ENDSND2);
             break;
         case 50:
             FX_StopAllSounds();
@@ -3427,14 +3427,14 @@ void endanimvol43(long fr)
     switch(fr)
     {
         case 1:
-            sound(BOSS4_DEADSPEECH);
+            Xsound(BOSS4_DEADSPEECH);
             break;
         case 40:
-            sound(VOL4ENDSND1);
-            sound(DUKE_UNDERWATER);
+            Xsound(VOL4ENDSND1);
+            Xsound(DUKE_UNDERWATER);
             break;
         case 50:
-            sound(BIGBANG);
+            Xsound(BIGBANG);
             break;
     }
 }

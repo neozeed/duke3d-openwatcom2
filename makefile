@@ -1,7 +1,7 @@
 #This make file is used with Watcom C/C++ 32 Compiler v11.0c
 #debug = /d2 /w1
 #all = debug all
-prod = /5r /s /otexan
+prod = /5r /s /otexan 
 
 duke3d.exe : game.obj actors.obj gamedef.obj global.obj menues.obj player.obj &
 			premap.obj sector.obj sounds.obj rts.obj  &

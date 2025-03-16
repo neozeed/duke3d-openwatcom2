@@ -92,7 +92,7 @@ void RTS_AddFile (char *filename)
 //
 // Fill in lumpinfo
 //
-   SafeRealloc(&lumpinfo,numlumps*sizeof(lumpinfo_t));
+   SafeRealloc((void*)lumpinfo,numlumps*sizeof(lumpinfo_t));
    lump_p = &lumpinfo[startlump];
 
    for (i=startlump ; i<numlumps ; i++,lump_p++, fileinfo++)

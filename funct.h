@@ -40,13 +40,13 @@ extern int USRHOOKS_FreeMem(char *ptr);
 //#line "sounds.c" 200
 extern void intomenusounds(void );
 //#line "sounds.c" 227
-extern void playmusic(char *fn);
+extern void PlayMusic(char *fn);
 //#line "sounds.c" 251
 extern char loadsound(unsigned short num);
 //#line "sounds.c" 277
 extern int xyzsound(short num,short i,long x,long y,long z);
 //#line "sounds.c" 407
-extern void sound(short num);
+extern void Xsound(short num);
 //#line "sounds.c" 463
 extern int spritesound(unsigned short num,short i);
 //#line "sounds.c" 469

@@ -79,7 +79,7 @@ int   FX_GetBlasterSettings( fx_blaster_config *blaster );
 int   FX_SetupSoundBlaster( fx_blaster_config blaster, int *MaxVoices, int *MaxSampleBits, int *MaxChannels );
 int   FX_Init( int SoundCard, int numvoices, int numchannels, int samplebits, unsigned mixrate );
 int   FX_Shutdown( void );
-int   FX_SetCallBack( void ( *function )( unsigned long ) );
+int   FX_SetCallBack( void ( *function )( long ) );
 void  FX_SetVolume( int volume );
 int   FX_GetVolume( void );
 
